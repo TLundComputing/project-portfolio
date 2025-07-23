@@ -28,8 +28,11 @@ import java.awt.*;
 public class Portfolio extends JFrame{
     
     private final JLabel TITLE = new JLabel("Programming Portfolio");
+    private final JButton RUN = new JButton("Run Project");
+    private final JComboBox<String> PICKER = new JComboBox<>(new String[] {"Select Project...", "Fruit Machine", "Mastermind", "Advent of Code"});
     private final JPanel HEADER = new JPanel();
     private final JPanel CONTENT = new JPanel();
+    private final JPanel FOOTER = new JPanel();
     
     public Portfolio(){
         // Declaring Static Properties
@@ -42,10 +45,14 @@ public class Portfolio extends JFrame{
         // Changing properities
         TITLE.setFont(new Font("Arial", Font.PLAIN, 34));
         HEADER.add(TITLE);
+        CONTENT.add(PICKER);
+        CONTENT.add(RUN);
+        FOOTER.add(new JLabel("These projects are taken from the OCR Coding challenges"));
         
         // Adding Content to main JFrame and setting visibility
         add(HEADER, BorderLayout.NORTH);
         add(CONTENT, BorderLayout.CENTER);
+        add(FOOTER, BorderLayout.SOUTH);
         setVisible(true);
     }
     
