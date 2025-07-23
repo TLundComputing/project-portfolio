@@ -19,6 +19,7 @@
 package io.github.tlundcomputing.portfolio;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -26,14 +27,25 @@ import javax.swing.*;
  */
 public class Portfolio extends JFrame{
     
-    private final JLabel TITLE = new JLabel("This is my programming portfolio");
+    private final JLabel TITLE = new JLabel("Programming Portfolio");
+    private final JPanel HEADER = new JPanel();
+    private final JPanel CONTENT = new JPanel();
     
     public Portfolio(){
+        // Declaring Static Properties
         super("TLundComputing Programming Portfolio");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600,400);
         setLocationRelativeTo(null);
-        add(TITLE);
+        setLayout(new BorderLayout());
+        
+        // Changing properities
+        TITLE.setFont(new Font("Arial", Font.PLAIN, 34));
+        HEADER.add(TITLE);
+        
+        // Adding Content to main JFrame and setting visibility
+        add(HEADER, BorderLayout.NORTH);
+        add(CONTENT, BorderLayout.CENTER);
         setVisible(true);
     }
     
