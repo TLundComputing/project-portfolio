@@ -1,6 +1,6 @@
 /**
- * Programming Project Portfolio
- * Copyright (C) 2025  TLundComputing
+ *   Programming Project Portfolio
+ *   Copyright (C) 2025  TLundComputing
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,12 +20,15 @@ package io.github.tlundcomputing.portfolio;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  *
  * @author TLundComputing
  */
-public class Portfolio extends JFrame{
+public class Portfolio extends JFrame implements ActionListener{
+    
+    ClassLoader ldr = this.getClass().getClassLoader();
     
     private final JLabel TITLE = new JLabel("Programming Portfolio");
     private final JButton RUN = new JButton("Run Project");
@@ -33,6 +36,8 @@ public class Portfolio extends JFrame{
     private final JPanel HEADER = new JPanel();
     private final JPanel CONTENT = new JPanel();
     private final JPanel FOOTER = new JPanel();
+    private final ImageIcon FACE = new ImageIcon(ldr.getResource("./io/github/tlundcomputing/portfolio/Icon.png"));
+    private final JLabel LOGO = new JLabel(FACE);
     
     public Portfolio(){
         // Declaring Static Properties
@@ -42,9 +47,13 @@ public class Portfolio extends JFrame{
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
+        // Add a listner to the run button
+        RUN.addActionListener(this);
+        
         // Changing properities
         TITLE.setFont(new Font("Arial", Font.PLAIN, 34));
         HEADER.add(TITLE);
+        CONTENT.add(LOGO);
         CONTENT.add(PICKER);
         CONTENT.add(RUN);
         FOOTER.add(new JLabel("These projects are taken from the OCR Coding challenges"));
@@ -58,5 +67,17 @@ public class Portfolio extends JFrame{
     
     public static void main(String[] args) {
         Portfolio gui = new Portfolio();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == RUN){
+            if(PICKER.getSelectedItem().toString().equalsIgnoreCase("Select Project...")){
+                JOptionPane.showMessageDialog(this, "Select a project", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String msg = "You are going to run the following project: " + PICKER.getSelectedItem();
+                JOptionPane.showMessageDialog(this, msg, "Running Project", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }
 }

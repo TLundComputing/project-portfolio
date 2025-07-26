@@ -20,6 +20,6 @@ module Portfolio {
     requires java.desktop;
     
     //opens io.github.tlundcomputing.portfolio to java.desktop;
-    exports io.github.tlundcomputing.portfolio;
+    //exports io.github.tlundcomputing.portfolio;
     
 }
